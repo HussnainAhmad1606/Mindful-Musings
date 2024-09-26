@@ -30,7 +30,7 @@ const signupHandler = async (req:NextApiRequest, res:NextApiResponse) => {
         })
     
         await user.save();
-      res.status(201).json({ message: 'Account created successfully' });
+      res.status(201).json({ type:"success", message: 'Account created successfully' });
     }
 };
 

@@ -10,8 +10,8 @@ const loginHandler = async (req:NextApiRequest, res:NextApiResponse) => {
     return res.status(405).end();
   }
 
-  const { email,password } = req.body;
-  const user = await User.findOne({email: email})
+  const { username,password } = req.body;
+  const user = await User.findOne({username: username})
 
   if (!user) {
     return res.status(401).json({ type: "error",message: 'Invalid username or Password' });
