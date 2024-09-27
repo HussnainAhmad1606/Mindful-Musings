@@ -9,6 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@bomdi/codebox": "^2.0.0",
+    "@editorjs/code": "^2.9.2",
+    "@editorjs/editorjs": "^2.30.6",
+    "@editorjs/header": "^2.8.7",
+    "@editorjs/simple-image": "^1.6.0",
+    "@rxpm/editor-js-code": "^0.0.1",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",
@@ -25,6 +31,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "daisyui": "^4.12.10",
+    "editorjs-hyperlink": "^1.0.6",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"

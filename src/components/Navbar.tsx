@@ -44,7 +44,9 @@ function Navbar() {
   </div>
   <div className="navbar-end">
     <ThemeController/>
-    <a className="ml-10 btn btn-primary">Subscribe</a>
+    <Link href={"/signup"} className="ml-2 btn btn-neutral">Signup</Link>
+    <Link href="/login" className="mx-5 btn btn-primary">Login</Link>
+    <Link href={"/subscribe"} className="btn btn-accent">Subscribe</Link>
   </div>
 </div>
   )
