@@ -34,8 +34,8 @@ function BlogArticleCard({title, desc, link}:{title:string, desc:string, link:st
       
         </div>
       </div>
-      <div className="card-actions justify-end">
-        {/* <Link href={link} className="btn btn-primary">Read Me</Link> */}
+      <div className="mt-10 card-actions justify-end">
+        <Link href={link} className="btn btn-primary">Read Me</Link>
       </div>
     </div>
   </div>
