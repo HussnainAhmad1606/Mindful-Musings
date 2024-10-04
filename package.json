@@ -15,6 +15,8 @@
     "@editorjs/header": "^2.8.7",
     "@editorjs/simple-image": "^1.6.0",
     "@rxpm/editor-js-code": "^0.0.1",
+    "@stripe/react-stripe-js": "^2.8.0",
+    "@stripe/stripe-js": "^4.6.0",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",
@@ -23,7 +25,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
-    "react-icons": "^5.3.0"
+    "react-icons": "^5.3.0",
+    "stripe": "^17.1.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
