@@ -3,11 +3,11 @@ Mindful Musings is a subscription-based platform where admin can share articles 
 
 # Features
 - [x] Login/Signup
-- [ ] Admin can manage articles
-- [ ] Discussions in articles
+- [x] Admin can manage articles
+- [x] Discussions in articles
 - [ ] User can subscribe and pay for subscription
 - [ ] User can unsubscribe for the subscription
-- [ ] Premium articles can only be read by premium members
+- [x] Premium articles can only be read by premium members
 - [ ] Search by title, tag or content
 - [ ] Reading Streak
 - [ ] bookmark/save articles

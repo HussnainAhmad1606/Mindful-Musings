@@ -4,9 +4,13 @@ import React, { useEffect, useState } from "react";
 import "@/css/premium.css";
 import { useUserStore } from "@/store/store";
 import HiddenContent from "@/components/HiddenContent";
+import CommentCard from "@/components/CommentCard";
+import { toast } from "react-hot-toast";
 export default function page({ params }: any) {
 
-  const {isPremium} = useUserStore();
+  const {isPremium, Username} = useUserStore();
+  const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([])
   const { slug } = params;
   const [article, setArticle] = useState({
     title: "",
@@ -66,11 +70,55 @@ export default function page({ params }: any) {
     }
   };
 
+  const comment2 = {
+    username: "psycho",
+    body: "Test"
+
+  }
+
+  const addComment = async() => {
+    const data = {
+      username: Username,
+      articleId: slug,
+      body: comment
+    }
+
+    const req = await axios.post("/api/comment/add-comment", data)
+
+    if(req.data.type == "success"){
+      toast.success(req.data.message);
+      let newComment = {
+        username: Username,
+        body: comment,
+        articleId: slug
+      };
+      setComment("")
+      setComments([...comments, newComment])
+    }
+    else {
+      toast.error(req.data.messaeg)
+    }
+  }
+
+
+  const getComments = async() =>{
+    const req = await axios.post("/api/comment/get-comments", {articleId: slug})
+
+    console.log(req.data)
+    if (req.data.type = "success") {
+      setComments(req.data.comments);
+    }
+    else {
+      toast.error(req.data.message);
+    }
+  }
   useEffect(() => {
     getArticle();
+    getComments();
   }, []);
 
   return (
+    <>
     <div className="p-10 px-[300px]">
       <h1 className="text-4xl font-bold">{article.title}</h1>
 
@@ -124,9 +172,41 @@ export default function page({ params }: any) {
       <div className="divider"></div>
 
 
-      <h1 className="text-center font-bold text-3xl my-5">Discussions</h1>
+<div className="flex justify-between items-center">
+      <h1 className="text-center font-bold text-3xl my-5">Discussions ({comments.length})</h1>
+      <button onClick={()=>document.getElementById('newComment').showModal()} className="btn btn-sm btn-primary">New Comment</button>
+</div>
 
-      
+      <div className="flex justify-center items-center flex-col">
+        
+        {
+          comments.map((comment,index)=> {
+            return (
+              <CommentCard comment={comment} key={index}/>
+            )
+          })
+        }
+      </div>
     </div>
+    <dialog id="newComment" className="modal">
+  <div className="modal-box">
+    <h3 className="font-bold text-lg">New Comment!</h3>
+    <label className="form-control">
+  <div className="label">
+    <span className="label-text">Write your comment:</span>
+  </div>
+  <textarea value={comment} onChange={e=>setComment(e.target.value)} className="textarea textarea-bordered h-24" placeholder="Comment"></textarea>
+
+</label>
+    <div className="modal-action">
+      <form method="dialog">
+        {/* if there is a button in form, it will close the modal */}
+        <button className="btn">Close</button>
+        <button onClick={addComment} className="btn mx-3 btn-primary">Add Comment</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+    </>
   );
 }
