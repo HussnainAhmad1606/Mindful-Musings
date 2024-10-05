@@ -1,10 +1,12 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import editorjsHTML from "editorjs-html";
-const edjsHTML = require("editorjs-html");
+import "@/css/premium.css";
+import { useUserStore } from "@/store/store";
+import HiddenContent from "@/components/HiddenContent";
 export default function page({ params }: any) {
-  const edjsParser = edjsHTML();
+
+  const {isPremium} = useUserStore();
   const { slug } = params;
   const [article, setArticle] = useState({
     title: "",
@@ -89,11 +91,22 @@ export default function page({ params }: any) {
           <p>Published on: {date}</p>
         </div>
       </div>
-
-      <div dangerouslySetInnerHTML={{ __html: parsedContent }} />
-
-     
-
+      {
+  !article.isPremium || isPremium ? (
+    <div dangerouslySetInnerHTML={{ __html: parsedContent }} />
+  ) : (
+    <div className="premium-content">
+      <HiddenContent />
+    </div>
+  )
+}
+      {
+        article.isPremium?(
+          <div className="premium-overlay">
+    <p>This is premium content. Please upgrade to access.</p>
+</div>
+        ):null
+      }
       <div className="divider"></div>
 
       <div>
@@ -107,6 +120,13 @@ export default function page({ params }: any) {
           })}
         </div>
       </div>
+
+      <div className="divider"></div>
+
+
+      <h1 className="text-center font-bold text-3xl my-5">Discussions</h1>
+
+      
     </div>
   );
 }

@@ -1,0 +1,5 @@
+.premium-content {
+    filter: blur(8px);
+    pointer-events: none; /* Disable interaction */
+    position: relative;
+}

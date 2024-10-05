@@ -1,8 +1,38 @@
+"use client"
 import Link from 'next/link'
-import React from 'react'
+import React, {useEffect} from 'react'
 import ThemeController from './ThemeController'
+import ProfileDropdown from './ProfileDropdown'
+import { useUserStore } from '@/store/store'
+import axios from 'axios'
+import { toast } from 'react-hot-toast'
 
 function Navbar() {
+  const {IsLogin, Username, SetIsLogin, SetUsername,SetEmail, SetIsPremium} = useUserStore();
+
+  const verifyToken = async() => {
+    const token = localStorage.getItem("mindful-token");
+    const req = await axios.post("/api/auth/verify", {
+      token: token
+    })
+    
+
+    if (req.data.type == "success") {
+      SetIsLogin(true);
+      SetUsername(req.data.user.username)
+      SetEmail(req.data.user.email)
+      SetIsPremium(req.data.user.isPremium);
+    }
+    else {
+      toast.error("token expired. Please log in")
+    }
+
+  }
+
+  useEffect(() => {
+   verifyToken();
+  }, [])
+  
   return (
     <div className="navbar bg-base-100">
   <div className="navbar-start">
@@ -44,8 +74,16 @@ function Navbar() {
   </div>
   <div className="navbar-end">
     <ThemeController/>
-    <Link href={"/signup"} className="ml-2 btn btn-neutral">Signup</Link>
-    <Link href="/login" className="mx-5 btn btn-primary">Login</Link>
+    {
+    IsLogin==false?(
+      <>
+      <Link href={"/signup"} className="ml-2 btn btn-neutral">Signup</Link>
+      <Link href="/login" className="mx-5 btn btn-primary">Login</Link>
+      </>
+    ):(
+      <ProfileDropdown />
+    )
+    }
     <Link href={"/subscribe"} className="btn btn-accent">Subscribe</Link>
   </div>
 </div>

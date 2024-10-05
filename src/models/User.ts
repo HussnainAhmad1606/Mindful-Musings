@@ -34,6 +34,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['stripe'],
         default: null,
+      },
+      isAdmin: {
+        type: Boolean,
+        default: false
       }
     }, { timestamps: true });
 

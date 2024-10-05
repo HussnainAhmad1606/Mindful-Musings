@@ -1,9 +1,11 @@
 "use client"
+import { useUserStore } from '@/store/store'
 import axios from 'axios'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 
 function page() {
+  const {SetIsLogin, SetEmail, SetUsername, SetIsPremium} = useUserStore();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
@@ -18,6 +20,11 @@ function page() {
         console.log(res);
         if (res.type == "success"){
             toast.success(res.message);
+            SetIsLogin(true);
+            localStorage.setItem("mindful-token", res.token)
+            SetEmail(res.userData.email)
+            SetUsername(res.userData.username)
+            SetIsPremium(res.userData.isPremium)
         }
         else {
             toast.error(res.message);

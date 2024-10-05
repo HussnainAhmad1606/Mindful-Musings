@@ -22,10 +22,14 @@ const loginHandler = async (req:NextApiRequest, res:NextApiResponse) => {
   if (!isValidPassword) {
     return res.status(401).json({ type: "error", message: 'Invalid username or Password' });
   }
+  const userData = {
+    username: user.username,
+    email: user.email,
+    isPremium: user.isPremium
+  }
+  const token = signToken({ username: user.username, email: user.email, isPremium: user.isPremium }, SECRET_KEY, '1d');
 
-  const token = signToken({ username: user.username }, SECRET_KEY, '1d');
-
-  res.status(200).json({ type: "success", message: "Logged in Sucess", token: token});
+  res.status(200).json({ type: "success", message: "Logged in Sucess", token: token, userData});
 };
 
 export default connectDB(loginHandler);

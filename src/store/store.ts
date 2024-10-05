@@ -9,14 +9,16 @@ export const useUserStore = create((set) => ({
   UserId: "",
   SetUserId: (newId:String) => set({ UserId:newId }),
   IsLogin: false,
-  SetIsLogin: (newIsLogin:Boolean) => set({ isLogin: newIsLogin }),
+  IsPremium: false,
+  SetIsLogin: (newIsLogin:Boolean) => set({ IsLogin: newIsLogin }),
+  SetIsPremium: (newIsPrem:Boolean) => set({ IsPremium: newIsPrem }),
   
   Attachment: "",
-  SetAttachment: (newState:String) => set({ attachment:newState}),
+  SetAttachment: (newState:String) => set({ Attachment:newState}),
   UploadProgressCaption: "",
-  SetUploadProgressCaption: (newState:String) => set({ uploadProgressCaption:newState}),
+  SetUploadProgressCaption: (newState:String) => set({ UploadProgressCaption:newState}),
   AttachmentProgress: 0,
-  SetAttachmentProgress: (newState:Number) => set({ attachmentProgress:newState}),
+  SetAttachmentProgress: (newState:Number) => set({ AttachmentProgress:newState}),
 
 
 
