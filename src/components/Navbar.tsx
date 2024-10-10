@@ -6,6 +6,7 @@ import ProfileDropdown from './ProfileDropdown'
 import { useUserStore } from '@/store/store'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
+import { FaSearch } from "react-icons/fa";
 
 function Navbar() {
   const {IsLogin, Username, SetIsLogin, SetUsername,SetEmail, SetIsPremium} = useUserStore();
@@ -74,6 +75,9 @@ function Navbar() {
   </div>
   <div className="navbar-end">
     <ThemeController/>
+    <Link href={"/search"}>
+    <FaSearch className='text-3xl mx-5'/>
+    </Link>
     {
     IsLogin==false?(
       <>
