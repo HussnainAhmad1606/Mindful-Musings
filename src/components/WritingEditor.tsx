@@ -49,6 +49,7 @@ const WritingEditor = () => {
          let content = await editor.saver.save();
 
          console.log(content);
+         //@ts-ignore
          setContent(content)
 
        },
@@ -120,6 +121,7 @@ const WritingEditor = () => {
       <div id="editorjs"></div>
       <button onClick={() => setIsPreview(!isPreview)}>{isPreview ? 'Edit' : 'Preview'}</button>
      {/* Open the modal using document.getElementById('ID').showModal() method */}
+     {/* @ts-ignore */}
 <button className="btn" onClick={()=>document.getElementById('articleSettings').showModal()}>Post</button>
 <dialog id="articleSettings" className="modal">
   <div className="modal-box">
