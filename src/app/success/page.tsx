@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 
 const Success = () => {
-  const router = useRouter();
-  const { session_id } = router.query;
+  const searchParams = useSearchParams();
+  const session_id = searchParams?.get('session_id')
 
   return (
     <div>
