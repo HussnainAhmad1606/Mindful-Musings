@@ -12,7 +12,7 @@ export default async (req, res) => {
         mode: "subscription",
         line_items: [
           {
-            price: "price_YOUR_STRIPE_PRICE_ID", // Price ID from Stripe
+            price: "prod_R12EHYc2pD1MVJ",
             quantity: 1,
           },
         ],
