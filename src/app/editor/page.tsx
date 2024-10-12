@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
-import WritingEditor from "@/components/WritingEditor";
+import dynamic, { noSSR } from 'next/dynamic';
+const WritingEditor = dynamic(() => import("@/components/WritingEditor"),{ssr:false})
 function page() {
   return (
     <div>
