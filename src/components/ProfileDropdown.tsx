@@ -1,5 +1,6 @@
 "use client"
 import { useUserStore } from '@/store/store'
+import Link from 'next/link';
 import React from 'react'
 
 function ProfileDropdown() {
@@ -21,7 +22,7 @@ function ProfileDropdown() {
             Hi, {Username}
           </p>
         </li>
-        <li><a>Settings</a></li>
+        <li><Link href={"/bookmarks"}>Bookmarks</Link></li>
         <li><a>Logout</a></li>
       </ul>
     </div>

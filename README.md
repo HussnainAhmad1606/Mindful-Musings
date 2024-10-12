@@ -8,6 +8,6 @@ Mindful Musings is a subscription-based platform where admin can share articles 
 - [ ] User can subscribe and pay for subscription
 - [ ] User can unsubscribe for the subscription
 - [x] Premium articles can only be read by premium members
-- [ ] Search by title, tag or content
+- [x] Search by title, tag or content
 - [ ] Reading Streak
-- [ ] bookmark/save articles
+- [x] bookmark/save articles

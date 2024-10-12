@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 export const useUserStore = create((set) => ({
 
-  Username: "Psycho",
+  Username: "",
   SetUsername: (newUsername:String) => set({Username:newUsername}),
   Email: "",
   SetEmail: (newEmail:String) => set({ Email:newEmail }),

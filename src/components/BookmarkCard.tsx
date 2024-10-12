@@ -5,8 +5,11 @@ import { FaRegComment } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 import { FaChessKing } from "react-icons/fa6";
 import { format } from 'timeago.js';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
-function BlogArticleCard({article}:{article:any}) {
+function BlogArticleCard({article, deleteBookmark}:{article:any, deleteBookmark:any}) {
+
   return (
     <div className="my-5 card bg-base-100 w-[70%] shadow-xl">
     <div className="card-body">
@@ -45,7 +48,8 @@ function BlogArticleCard({article}:{article:any}) {
         </div>
        </div>
         <div className='flex justify-center items-center'>
-          <Link href={`/blog/${article._id}`} className="btn btn-primary">Read Me</Link>
+          <Link href={`/blog/${article._id}`} className="btn btn-primary">Read</Link>
+          <button onClick={deleteBookmark} className="mx-3 btn btn-error">Delete Bookmark</button>
       
         </div>
       </div>

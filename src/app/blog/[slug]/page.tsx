@@ -6,6 +6,7 @@ import { useUserStore } from "@/store/store";
 import HiddenContent from "@/components/HiddenContent";
 import CommentCard from "@/components/CommentCard";
 import { toast } from "react-hot-toast";
+import { FaRegBookmark } from "react-icons/fa";
 export default function page({ params }: any) {
 
   const {isPremium, Username} = useUserStore();
@@ -21,6 +22,32 @@ export default function page({ params }: any) {
   });
   const [date, setDate] = useState("");
   const [parsedContent, setParsedContent] = useState([]);
+
+  const addBookmark = async() => {
+    const data = {
+      articleId: slug,
+      username: Username
+    }
+
+    try {
+      
+    const re = await axios.post("/api/bookmark/add-bookmark", data);
+    const response = re.data;
+    if (response.type == "success") {
+      toast.success(response.message);
+    }
+    else {
+      toast.error(response.message);
+    }
+
+    }
+
+    catch(error:any){
+      console.log(error)
+      toast.error(error.response.data.message);
+    }
+  }
+
   const getArticle = async () => {
     const response = await axios.post(`/api/articles/get-single-article`, {
       articleId: slug,
@@ -96,7 +123,7 @@ export default function page({ params }: any) {
       setComments([...comments, newComment])
     }
     else {
-      toast.error(req.data.messaeg)
+      toast.error(req.data.message)
     }
   }
 
@@ -157,7 +184,7 @@ export default function page({ params }: any) {
       }
       <div className="divider"></div>
 
-      <div>
+      <div className="flex justify-between items-center">
         <div className="my-3 flex flex-wrap gap-2">
           {article.tags.map((tag, index) => {
             return (
@@ -166,6 +193,13 @@ export default function page({ params }: any) {
               </span>
             );
           })}
+        </div>
+
+        <div className='flex justify-center items-center'>
+          <FaRegBookmark onClick={addBookmark} style={{
+            cursor: "pointer"
+          }} className='text-2xl mx-3'/>
+      
         </div>
       </div>
 
@@ -186,6 +220,8 @@ export default function page({ params }: any) {
             )
           })
         }
+
+
       </div>
     </div>
     <dialog id="newComment" className="modal">
