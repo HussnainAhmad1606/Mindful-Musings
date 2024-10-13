@@ -2,7 +2,7 @@ import React from 'react'
 
 function AboutMe() {
   return (
-    <div className='bg-base-200 '>
+    <div className='py-5 bg-base-200 '>
     <h1 className="text-center text-4xl font-bold">About Me</h1>
         <div className="hero min-h-screen">
 

@@ -7,7 +7,7 @@ import React from 'react'
 import { toast } from 'react-hot-toast';
 
 function page() {
-  const {IsPremium, Username} = useUserStore();
+  const {IsPremium, Username, SetIsPremium} = useUserStore();
 
   const unsubscribe = async() => {
     const transId = await axios.post("/api/getTranscationId", {
@@ -32,6 +32,7 @@ const stripeUnsub = async(ID:String) => {
 
   if (unsub.data.type == "success"){
     toast.success(unsub.data.message);
+    SetIsPremium(false);
   }
   else {
     toast.error(unsub.data.message);

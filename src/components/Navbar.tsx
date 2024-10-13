@@ -59,7 +59,6 @@ function Navbar() {
       
       <li><Link href={"/blog"}>Blog</Link></li>
       <li><Link href={"/about"}>About</Link></li>
-      <li><Link href={"/about"}>Contact</Link></li>
       </ul>
     </div>
     <a className="btn btn-ghost text-xl">Mindful Musings</a>
@@ -70,7 +69,6 @@ function Navbar() {
       
       <li><Link href={"/blog"}>Blog</Link></li>
       <li><Link href={"/about"}>About</Link></li>
-      <li><Link href={"/about"}>Contact</Link></li>
     </ul>
   </div>
   <div className="navbar-end">
