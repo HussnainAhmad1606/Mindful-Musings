@@ -32,7 +32,7 @@ export default async function handler(req, res) {
       const customerId = paymentIntent.customer;
 
       // Optionally, if you want to retrieve the customer data (e.g., email), you'll need to fetch it
-      let transactionId = event.id;
+      let transactionId = event.data.object.subscription;
       const customer = await stripe.customers.retrieve(customerId);
       let subscriptionEndDate = new Date();
       subscriptionEndDate.setMonth(subscriptionEndDate.getMonth()+1);

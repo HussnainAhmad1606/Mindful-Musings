@@ -9,7 +9,7 @@ import { toast } from 'react-hot-toast'
 import { FaSearch } from "react-icons/fa";
 
 function Navbar() {
-  const {IsLogin, Username, SetIsLogin, SetUsername,SetEmail, SetIsPremium} = useUserStore();
+  const {IsLogin, IsPremium, Username, SetIsLogin, SetUsername,SetEmail, SetIsPremium} = useUserStore();
 
   const verifyToken = async() => {
     const token = localStorage.getItem("mindful-token");
@@ -87,7 +87,7 @@ function Navbar() {
     ):(
       <>
       <ProfileDropdown />
-      <Link href={"/subscribe"} className="btn btn-accent">Subscribe</Link>
+      <Link href={"/subscribe"} className="btn btn-accent">{IsPremium?"Unsubscribe":"Subscribe"}</Link>
       </>
     )
     }
