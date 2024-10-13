@@ -1,9 +1,10 @@
 import Stripe from 'stripe';
+import connectDB from '@/middlewares/connectDB';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 import User from '@/models/User';
 
-export default async function handler(req, res) {
+const handler = async(req, res)=> {
   if (req.method === 'POST') {
     const { subscriptionId, username } = req.body; 
 
@@ -27,3 +28,6 @@ export default async function handler(req, res) {
     res.status(405).end('Method Not Allowed');
   }
 }
+
+
+export default connectDB(handler);

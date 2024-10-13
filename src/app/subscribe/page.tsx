@@ -24,7 +24,8 @@ function page() {
 
 const stripeUnsub = async(ID:String) => {
   const unsub = await axios.post("/api/cancel-subscription", {
-    subscriptionId:ID
+    subscriptionId:ID,
+    username: Username
   });
 
   console.log(unsub.data)
