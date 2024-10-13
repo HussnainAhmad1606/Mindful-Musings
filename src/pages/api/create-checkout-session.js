@@ -20,6 +20,8 @@ export default async (req, res) => {
         cancel_url: `${req.headers.origin}/cancel`,
       });
 
+      console.log(session)
+
       res.status(200).json({ sessionId: session.id });
     } catch (err) {
       console.log(err)
