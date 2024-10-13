@@ -18,7 +18,9 @@ const Checkout = () => {
 
     const { sessionId } = await res.json();
 
+    console.log(sessionId)
     const stripe = await stripePromise;
+
 
     // Redirect the user to Stripe Checkout
     const { error } = await stripe.redirectToCheckout({
@@ -33,8 +35,8 @@ const Checkout = () => {
   };
 
   return (
-    <button onClick={handleCheckout} disabled={loading}>
-      {loading ? 'Processing...' : 'Subscribe Monthly'}
+    <button className='btn btn-primary' onClick={handleCheckout} disabled={loading}>
+      {loading ? 'Processing...' : 'Subscribe Now'}
     </button>
   );
 };

@@ -12,7 +12,7 @@ export default async (req, res) => {
         mode: "subscription",
         line_items: [
           {
-            price: "prod_R12EHYc2pD1MVJ",
+            price: "price_1Q90ADCHRMyTgUib8MKd62zW",
             quantity: 1,
           },
         ],
@@ -22,6 +22,7 @@ export default async (req, res) => {
 
       res.status(200).json({ sessionId: session.id });
     } catch (err) {
+      console.log(err)
       res.status(500).json({ error: err.message });
     }
   } else {

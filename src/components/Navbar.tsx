@@ -85,10 +85,12 @@ function Navbar() {
       <Link href="/login" className="mx-5 btn btn-primary">Login</Link>
       </>
     ):(
+      <>
       <ProfileDropdown />
+      <Link href={"/subscribe"} className="btn btn-accent">Subscribe</Link>
+      </>
     )
     }
-    <Link href={"/subscribe"} className="btn btn-accent">Subscribe</Link>
   </div>
 </div>
   )
