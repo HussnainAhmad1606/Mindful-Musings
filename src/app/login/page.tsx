@@ -15,6 +15,7 @@ function page() {
         }
         console.log(data)
 
+      try {
         const req = await axios.post("/api/auth/login", data);
         const res = req.data;
         console.log(res);
@@ -29,6 +30,10 @@ function page() {
         else {
             toast.error(res.message);
         }
+      }
+      catch(error:any) {
+        toast.error(error.response.data.message)
+      }
     }
 
   

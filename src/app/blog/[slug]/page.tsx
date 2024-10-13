@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 import { FaRegBookmark } from "react-icons/fa";
 export default function page({ params }: any) {
 
-  const {isPremium, Username} = useUserStore();
+  const {IsPremium, Username} = useUserStore();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([])
   const { slug } = params;
@@ -167,7 +167,7 @@ export default function page({ params }: any) {
         </div>
       </div>
       {
-  !article.isPremium || isPremium ? (
+  article.isPremium && IsPremium ? (
     <div dangerouslySetInnerHTML={{ __html: parsedContent }} />
   ) : (
     <div className="premium-content">
@@ -176,7 +176,7 @@ export default function page({ params }: any) {
   )
 }
       {
-        article.isPremium?(
+        article.isPremium && !IsPremium?(
           <div className="premium-overlay">
     <p>This is premium content. Please upgrade to access.</p>
 </div>

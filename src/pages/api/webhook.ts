@@ -32,6 +32,7 @@ export default async function handler(req, res) {
       const customerId = paymentIntent.customer;
 
       // Optionally, if you want to retrieve the customer data (e.g., email), you'll need to fetch it
+      let transactionId = event.id;
       const customer = await stripe.customers.retrieve(customerId);
       let subscriptionEndDate = new Date();
       subscriptionEndDate.setMonth(subscriptionEndDate.getMonth()+1);
@@ -40,7 +41,7 @@ export default async function handler(req, res) {
       console.log(customerEmail);
       const result = await User.findOneAndUpdate(
         { email: customerEmail }, // Search by email
-        { $set: { isPremium: true, subscriptionStartDate: new Date(), paymentMethod: "stripe", subscriptionEndDate: subscriptionEndDate } }, // Update subscription details
+        { $set: { isPremium: true, subscriptionStartDate: new Date(), paymentMethod: "stripe", subscriptionEndDate: subscriptionEndDate, transactionId: transactionId } }, // Update subscription details
         { returnOriginal: false } // Return the updated document
       );
       break;

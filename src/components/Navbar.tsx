@@ -16,7 +16,7 @@ function Navbar() {
     const req = await axios.post("/api/auth/verify", {
       token: token
     })
-    
+    console.log(req)
 
     if (req.data.type == "success") {
       SetIsLogin(true);

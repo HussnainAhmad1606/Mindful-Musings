@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: null,
       },
+      transactionId: {
+        type: String,
+        default: null,
+      },
       paymentMethod: {
         type: String,
         enum: ['stripe'],

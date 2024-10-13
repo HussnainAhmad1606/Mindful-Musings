@@ -1,10 +1,22 @@
 "use client"
 import { useUserStore } from '@/store/store'
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react'
+import { toast } from 'react-hot-toast';
 
 function ProfileDropdown() {
-  const {Username} = useUserStore();
+  const router = useRouter();
+  const {Username, SetEmail, SetUsername, SetIsLogin} = useUserStore();
+
+  const logout = async() => {
+    localStorage.removeItem("mindful-token");
+    toast.success("Logged out successful");
+    router.push("/login");
+    SetEmail("");
+    SetUsername("");
+    SetIsLogin(false);
+  }
   return (
     <div className="mx-3 dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -23,7 +35,7 @@ function ProfileDropdown() {
           </p>
         </li>
         <li><Link href={"/bookmarks"}>Bookmarks</Link></li>
-        <li><a>Logout</a></li>
+        <li><button onClick={logout}>Logout</button></li>
       </ul>
     </div>
   )
