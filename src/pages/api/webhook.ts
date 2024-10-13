@@ -1,5 +1,7 @@
 import { buffer } from 'micro';
 import Stripe from 'stripe';
+import User from '@/models/User';
+import connectDB from '@/middlewares/connectDB';
 
 export const config = {
   api: {
@@ -27,6 +29,20 @@ export default async function handler(req, res) {
       const paymentIntent = event.data.object;
       console.log('Payment succeeded for subscription:', paymentIntent);
       // Handle successful payment, such as updating user status in your database
+      const customerId = paymentIntent.customer;
+
+      // Optionally, if you want to retrieve the customer data (e.g., email), you'll need to fetch it
+      const customer = await stripe.customers.retrieve(customerId);
+      let subscriptionEndDate = new Date();
+      subscriptionEndDate.setMonth(subscriptionEndDate.getMonth()+1);
+      // Now you can access the customer's email
+      const customerEmail = customer.email;
+      console.log(customerEmail);
+      const result = await User.findOneAndUpdate(
+        { email: customerEmail }, // Search by email
+        { $set: { isPremium: true, subscriptionStartDate: new Date(), paymentMethod: "stripe", subscriptionEndDate: subscriptionEndDate } }, // Update subscription details
+        { returnOriginal: false } // Return the updated document
+      );
       break;
     case 'invoice.payment_failed':
       const failedInvoice = event.data.object;
